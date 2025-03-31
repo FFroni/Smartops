@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-# Configurazioni di pagina - DEVE essere la prima istruzione Streamlit
+# Page configurations - MUST be the first Streamlit instruction
 st.set_page_config(
     page_title="Manual Generator",
     page_icon="📘",
@@ -9,18 +9,18 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Aggiungi CSS personalizzato per un design moderno ed elegante
+# Add custom CSS for a modern and elegant design
 st.markdown(
     """
     <style>
-    /* Stile globale e font */
+    /* Global style and font */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
     
     html, body, [class*="css"] {
         font-family: 'Poppins', sans-serif;
     }
     
-    /* Contenitore principale */
+    /* Main container */
     .main-container {
         background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
         padding: 2.5rem;
@@ -29,7 +29,7 @@ st.markdown(
         margin: 1rem 0;
     }
     
-    /* Titolo principale */
+    /* Main title */
     .main-header {
         color: #2E7D32;
         text-align: center;
@@ -39,7 +39,7 @@ st.markdown(
         text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
     }
     
-    /* Area di upload */
+    /* Upload area */
     .upload-container {
         border: 2px dashed #4CAF50;
         background-color: rgba(76, 175, 80, 0.05);
@@ -55,7 +55,7 @@ st.markdown(
         transform: translateY(-2px);
     }
     
-    /* Bottoni */
+    /* Buttons */
     .stButton button {
         background-color: #2E7D32 !important;
         color: white !important;
@@ -72,7 +72,7 @@ st.markdown(
         transform: translateY(-2px) !important;
     }
     
-    /* Animazione per il messaggio di successo */
+    /* Animation for success message */
     .success-message {
         background-color: rgba(76, 175, 80, 0.1);
         color: #2E7D32;
@@ -87,7 +87,7 @@ st.markdown(
         to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Stile per la sidebar */
+    /* Style for sidebar */
     .sidebar-content {
         background-color: rgba(46, 125, 50, 0.05);
         padding: 1.2rem;
@@ -96,7 +96,7 @@ st.markdown(
         border-left: 4px solid #2E7D32;
     }
     
-    /* Stile per la barra di progresso */
+    /* Style for progress bar */
     .stProgress > div > div {
         background-color: #4CAF50 !important;
     }
@@ -113,19 +113,19 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Sidebar migliorata
+# Improved sidebar
 with st.sidebar:
-    st.markdown("### 📌 Informazioni")
+    st.markdown("### 📌 Information")
     st.markdown(
         """
         <div class='sidebar-content'>
-        <h4>Come funziona</h4>
+        <h4>How it works</h4>
         <ol>
-            <li>Carica il tuo file PDF</li>
-            <li>Attendi l'elaborazione</li>
-            <li>Scarica il manuale generato</li>
+            <li>Upload your PDF file</li>
+            <li>Wait for processing</li>
+            <li>Download the generated manual</li>
         </ol>
-        <p><strong>Nota:</strong> Il processo potrebbe richiedere alcuni minuti in base alla dimensione del file.</p>
+        <p><strong>Note:</strong> The process may take a few minutes depending on the file size.</p>
         </div>
         """,
         unsafe_allow_html=True
@@ -134,73 +134,73 @@ with st.sidebar:
     st.markdown(
         """
         <div class='sidebar-content' style='margin-top: 20px;'>
-        <h4>Assistenza</h4>
-        <p>Per problemi o domande, contatta il nostro team di supporto all'indirizzo <strong>support@example.com</strong></p>
+        <h4>Support</h4>
+        <p>For issues or questions, contact our support team at <strong>assistance@smartops.com</strong></p>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-# Contenitore principale
+# Main container
 st.markdown("<div class='main-container'>", unsafe_allow_html=True)
 
-# Header con animazione
+# Header with animation
 st.markdown("<h1 class='main-header'>📘 Manual Generator</h1>", unsafe_allow_html=True)
 
-# Descrizione
+# Description
 st.markdown(
     """
     <p style='text-align: center; margin-bottom: 2rem; color: #555; font-size: 1.1rem;'>
-    Trasforma i tuoi documenti PDF in manuali professionali con un solo click.
+    Transform your PDF documents into professional manuals with a single click.
     </p>
     """,
     unsafe_allow_html=True
 )
 
-# Area di upload migliorata
+# Improved upload area
 st.markdown("<div class='upload-container'>", unsafe_allow_html=True)
-uploaded_pdf = st.file_uploader("Seleziona o trascina qui il tuo file PDF", type="pdf")
-st.markdown("Accettiamo file PDF fino a 10MB", unsafe_allow_html=True)
+uploaded_pdf = st.file_uploader("Select or drag your PDF file here", type="pdf")
+st.markdown("We accept PDF files up to 10MB", unsafe_allow_html=True)
 st.markdown("</div>", unsafe_allow_html=True)
 
-# Processo di generazione
+# Generation process
 if uploaded_pdf is not None:
     st.markdown(
-        "<div class='success-message'>File caricato con successo!</div>",
+        "<div class='success-message'>File successfully uploaded!</div>",
         unsafe_allow_html=True
     )
     
-    # Opzioni di configurazione (aggiunta)
-    with st.expander("Opzioni di generazione", expanded=False):
+    # Configuration options (added)
+    with st.expander("Generation options", expanded=False):
         col1, col2 = st.columns(2)
         with col1:
             format_option = st.selectbox(
-                "Formato di output",
-                ["PDF Standard", "PDF Interattivo", "PDF con indice"]
+                "Output format",
+                ["Standard PDF", "Interactive PDF", "PDF with index"]
             )
         with col2:
             style_option = st.selectbox(
-                "Stile grafico",
-                ["Moderno", "Classico", "Minimalista", "Aziendale"]
+                "Graphic style",
+                ["Modern", "Classic", "Minimalist", "Corporate"]
             )
     
     st.markdown("<div style='margin: 1.5rem 0;'>", unsafe_allow_html=True)
     
-    # Pulsante di generazione
-    if st.button("Genera Manuale", key="generate_btn"):
-        # Mostra una barra di avanzamento per simulare il processo
-        progress_text = "Elaborazione del documento in corso..."
+    # Generation button
+    if st.button("Generate Manual", key="generate_btn"):
+        # Show a progress bar to simulate the process
+        progress_text = "Document processing in progress..."
         st.text(progress_text)
         
         progress_bar = st.progress(0)
         
-        # Simulazione delle fasi del processo
+        # Simulation of process phases
         stages = [
-            "Analisi del documento...",
-            "Estrazione del contenuto...",
-            "Formattazione del manuale...",
-            "Generazione dell'indice...",
-            "Finalizzazione..."
+            "Analyzing document...",
+            "Extracting content...",
+            "Formatting manual...",
+            "Generating index...",
+            "Finalizing..."
         ]
         
         stage_weight = 100 / len(stages)
@@ -212,33 +212,33 @@ if uploaded_pdf is not None:
                 time.sleep(0.03)
             st.text(stage)
         
-        # Completamento
+        # Completion
         progress_bar.progress(100)
         st.markdown(
             "<div class='success-message' style='margin-top: 1rem;'>"
-            "<h3>✅ Manuale generato con successo!</h3>"
-            "<p>Il tuo documento è pronto per il download</p>"
+            "<h3>✅ Manual successfully generated!</h3>"
+            "<p>Your document is ready for download</p>"
             "</div>",
             unsafe_allow_html=True
         )
         
-        # Legge il file PDF predeterminato (sostituisci 'mainpdf.pdf' con il percorso del tuo file)
+        # Read the predefined PDF file (replace 'mainpdf.pdf' with your file path)
         try:
             with open("mainpdf.pdf", "rb") as file:
                 pdf_data = file.read()
                 
-            # Area di download migliorata
+            # Improved download area
             col1, col2, col3 = st.columns([1, 2, 1])
             with col2:
                 st.download_button(
-                    label="Scarica il manuale generato",
+                    label="Download the generated manual",
                     data=pdf_data,
-                    file_name="manuale_generato.pdf",
+                    file_name="generated_manual.pdf",
                     mime="application/pdf",
                     key="download_btn"
                 )
         except:
-            st.error("Impossibile caricare il file. Assicurati che 'mainpdf.pdf' esista nella directory dell'applicazione.")
+            st.error("Unable to load the file. Make sure 'mainpdf.pdf' exists in the application directory.")
     
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -246,10 +246,8 @@ if uploaded_pdf is not None:
 st.markdown(
     """
     <div class='footer'>
-        <p>© 2025 Manual Generator | Tutti i diritti riservati</p>
+        <p>© 2025 Manual Generator | All rights reserved</p>
     </div>
     """,
     unsafe_allow_html=True
 )
-
-st.markdown("</div>", unsafe_allow_html=True)
